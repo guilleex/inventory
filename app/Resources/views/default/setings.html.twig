@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{ 'setings' }}
+{% endblock %}
+
+{% block left_sidebar %}
+
+<section class="col-xs-8 col-xs-offset-2 col-sm-5 col-sm-offset-0 col-lg-4 clearfix" id="salaries-setings">
+<h4>Machine Types</h4>
+
+	<div class="col-sm-12">
+		<div class="sidebar-nav">
+			<div class="navbar navbar-default" role="navigation">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<span class="visible-xs navbar-brand">Machine Types</span>
+				</div>
+				<div class="navbar-collapse collapse sidebar-navbar-collapse">
+					<ul class="nav navbar-nav">
+						{% for machineType in machineTypes %}
+						<li {% if machineType.slug in app.request.get('_route_params') %} class="active" {% endif %}><a href="{{ path('setings_type_edit', { 'slug': machineType.slug }) }}">{{ machineType.name }}</a></li>
+						{% endfor %}
+					</ul>
+				</div><!--/.nav-collapse -->
+			</div>
+			<a href="{{ path('setings_type_new') }}"{% if app.request.get('_route') == 'setings_type_new' %} class="active" {% endif %} class="new">+ New Machine Type</a>
+		</div>
+	</div>
+
+<h4>Machines</h4>
+
+	<div class="col-xs-12">
+		<div class="sidebar-nav">
+			<div class="navbar navbar-default" role="navigation">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<span class="visible-xs navbar-brand">Machines</span>
+				</div>
+				<div class="navbar-collapse collapse sidebar-navbar-collapse">
+					<ul class="nav navbar-nav">
+						{% for machine in machines %}
+						<li {% if machine.slug in app.request.get('_route_params') %} class="active" {% endif %}><a href="{{ path('setings_machine_edit', { 'slug': machine.slug }) }}">{{ machine.position }}.{{ machine.name }}</a></li>
+						{% endfor %}
+					</ul>
+				</div><!--/.nav-collapse -->
+			</div>
+			<a href="{{ path('setings_machine_new') }}"{% if app.request.get('_route') == 'setings_machine_new' %} class="active" {% endif %}  class="new">+ New Machine</a>
+		</div>
+	</div>
+
+</section>
+{% endblock %}

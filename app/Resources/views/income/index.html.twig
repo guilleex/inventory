@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'salaries' }}
+{% endblock %}
+
+{% block left_sidebar %}
+<section class="col-xs-8 col-xs-offset-2 col-sm-5 col-sm-offset-0 col-lg-4 clearfix" id="salaries-setings">
+    <h4>Salaries Lists</h4>
+    <div class="col-sm-12">
+        <div class="sidebar-nav">
+            <div class="navbar navbar-default" role="navigation">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <span class="visible-xs navbar-brand">Salaries Lists</span>
+                </div>
+                <div class="navbar-collapse collapse sidebar-navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        {% for salarie in salaries %}
+                            <li {% if salarie.slug in app.request.get('_route_params') %} class="active" {% endif %}><a href="{{ path('income_show', { 'slug': salarie.slug }) }}">{{ salarie.name }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div><!--/.nav-collapse -->
+            </div>
+            <a href="{{ path('income_new') }}"{% if app.request.get('_route') == 'income_new' %} class="active" {% endif %}> + New Salarie List</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

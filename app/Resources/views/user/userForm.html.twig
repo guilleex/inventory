@@ -1,0 +1,18 @@
+{{ form_start(form) }}
+
+    {{ form_errors(form) }}
+
+    {{ form_row(form.first_name) }}
+    {{ form_row(form.last_name) }}
+    {{ form_row(form.username) }}
+    {{ form_row(form.email) }}
+    {{ form_row(form.plainPassword.first, {
+        'label': 'Password'
+    }) }}
+    {{ form_row(form.plainPassword.second, {
+        'label': 'Repeat Password'
+    }) }}
+    {{ form_row(form.roles) }}
+    {{ form_row(form.isActive) }}
+    <button type="submit" class="btn btn-primary" formnovalidate>Save</button>
+{{ form_end(form) }}

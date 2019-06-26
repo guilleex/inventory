@@ -1,0 +1,12 @@
+{% extends 'income/formLayout.html.twig' %}
+
+{% block title %}
+    {{ 'New Salaries List' }}
+{% endblock %}
+
+{% block body %}
+<section class="col-xs-6 col-xs-offset-3 col-sm-6 col-sm-offset-1 col-md-5 col-md-offset-1 col-lg-4 col-lg-offset-2 js-form-wrapper" id="salaries-setings-form">
+    <h3>Create Salaries list</h3>
+     {{ include('income/_form.html.twig') }}
+ </section>
+{% endblock %}

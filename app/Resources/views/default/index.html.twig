@@ -1,76 +1,265 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-    <div id="wrapper">
-        <div id="container">
-            <div id="welcome">
-                <h1><span>Welcome to</span> Symfony {{ constant('Symfony\\Component\\HttpKernel\\Kernel::VERSION') }}</h1>
-            </div>
-
-            <div id="status">
-                <p>
-                    <svg id="icon-status" width="1792" height="1792" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1671 566q0 40-28 68l-724 724-136 136q-28 28-68 28t-68-28l-136-136-362-362q-28-28-28-68t28-68l136-136q28-28 68-28t68 28l294 295 656-657q28-28 68-28t68 28l136 136q28 28 28 68z" fill="#759E1A"/></svg>
-
-                    Your application is now ready. You can start working on it at:
-                    <code>{{ base_dir }}</code>
-                </p>
-            </div>
-
-            <div id="next">
-                <h2>What's next?</h2>
-                <p>
-                    <svg id="icon-book" version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="-12.5 9 64 64" enable-background="new -12.5 9 64 64" xml:space="preserve">
-                        <path fill="#AAA" d="M6.8,40.8c2.4,0.8,4.5-0.7,4.9-2.5c0.2-1.2-0.3-2.1-1.3-3.2l-0.8-0.8c-0.4-0.5-0.6-1.3-0.2-1.9
-                            c0.4-0.5,0.9-0.8,1.8-0.5c1.3,0.4,1.9,1.3,2.9,2.2c-0.4,1.4-0.7,2.9-0.9,4.2l-0.2,1c-0.7,4-1.3,6.2-2.7,7.5
-                            c-0.3,0.3-0.7,0.5-1.3,0.6c-0.3,0-0.4-0.3-0.4-0.3c0-0.3,0.2-0.3,0.3-0.4c0.2-0.1,0.5-0.3,0.4-0.8c0-0.7-0.6-1.3-1.3-1.3
-                            c-0.6,0-1.4,0.6-1.4,1.7s1,1.9,2.4,1.8c0.8,0,2.5-0.3,4.2-2.5c2-2.5,2.5-5.4,2.9-7.4l0.5-2.8c0.3,0,0.5,0.1,0.8,0.1
-                            c2.4,0.1,3.7-1.3,3.7-2.3c0-0.6-0.3-1.2-0.9-1.2c-0.4,0-0.8,0.3-1,0.8c-0.1,0.6,0.8,1.1,0.1,1.5c-0.5,0.3-1.4,0.6-2.7,0.4l0.3-1.3
-                            c0.5-2.6,1-5.7,3.2-5.8c0.2,0,0.8,0,0.8,0.4c0,0.2,0,0.2-0.2,0.5c-0.2,0.3-0.3,0.4-0.2,0.7c0,0.7,0.5,1.1,1.2,1.1
-                            c0.9,0,1.2-1,1.2-1.4c0-1.2-1.2-1.8-2.6-1.8c-1.5,0.1-2.8,0.9-3.7,2.1c-1.1,1.3-1.8,2.9-2.3,4.5c-0.9-0.8-1.6-1.8-3.1-2.3
-                            c-1.1-0.7-2.3-0.5-3.4,0.3c-0.5,0.4-0.8,1-1,1.6c-0.4,1.5,0.4,2.9,0.8,3.4l0.9,1c0.2,0.2,0.6,0.8,0.4,1.5c-0.3,0.8-1.2,1.3-2.1,1
-                            c-0.4-0.2-1-0.5-0.9-0.9c0.1-0.2,0.2-0.3,0.3-0.5s0.1-0.3,0.1-0.3c0.2-0.6-0.1-1.4-0.7-1.6c-0.6-0.2-1.2,0-1.3,0.8
-                            C4.3,38.4,4.7,40,6.8,40.8z M46.1,20.9c0-4.2-3.2-7.5-7.1-7.5h-3.8C34.8,10.8,32.7,9,30.2,9L-2.3,9.1c-2.8,0.1-4.9,2.4-4.9,5.4
-                            L-7,58.6c0,4.8,8.1,13.9,11.6,14.1l34.7-0.1c3.9,0,7-3.4,7-7.6L46.1,20.9z M-0.3,36.4c0-8.6,6.5-15.6,14.5-15.6
-                            c8,0,14.5,7,14.5,15.6S22.1,52,14.2,52C6.1,52-0.3,45-0.3,36.4z M42.1,65.1c0,1.8-1.5,3.1-3.1,3.1H4.6c-0.7,0-3-1.8-4.5-4.4h30.4
-                            c2.8,0,5-2.4,5-5.4V17.9h3.7c1.6,0,2.9,1.4,2.9,3.1V65.1L42.1,65.1z"/>
-                    </svg>
-
-                    Read the documentation to learn
-                    <a href="http://symfony.com/doc/{{ constant('Symfony\\Component\\HttpKernel\\Kernel::VERSION')[:3] }}/page_creation.html">
-                        How to create your first page in Symfony
-                    </a>
-                </p>
-            </div>
-
-        </div>
-    </div>
+{% block stylesheets %}
+	{{ parent() }}
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/css/bootstrap-datepicker.css">
 {% endblock %}
 
-{% block stylesheets %}
-<style>
-    body { background: #F5F5F5; font: 18px/1.5 sans-serif; }
-    h1, h2 { line-height: 1.2; margin: 0 0 .5em; }
-    h1 { font-size: 36px; }
-    h2 { font-size: 21px; margin-bottom: 1em; }
-    p { margin: 0 0 1em 0; }
-    a { color: #0000F0; }
-    a:hover { text-decoration: none; }
-    code { background: #F5F5F5; max-width: 100px; padding: 2px 6px; word-wrap: break-word; }
-    #wrapper { background: #FFF; margin: 1em auto; max-width: 800px; width: 95%; }
-    #container { padding: 2em; }
-    #welcome, #status { margin-bottom: 2em; }
-    #welcome h1 span { display: block; font-size: 75%; }
-    #icon-status, #icon-book { float: left; height: 64px; margin-right: 1em; margin-top: -4px; width: 64px; }
-    #icon-book { display: none; }
+{% block body %}
 
-    @media (min-width: 768px) {
-        #wrapper { width: 80%; margin: 2em auto; }
-        #icon-book { display: inline-block; }
-        #status a, #next a { display: block; }
+	<div class="daily-date-picker">
+		<form class="form-inline" name="date" method="get">
+			<div class="form-group">
+				<label class="sr-only" for="date_picker_form_date">Date</label>
+					<input id="date_picker_form_date" class="date_picker_form_date js-datepicker form-control" name="date" required="required" type="text"
+					{% if date is defined %} value="{{ date|date("d.m.Y.") }}"{% endif %}>
+			</div>
+			<button type="submit" class="btn btn-primary btn-sm">Go</button>
+		</form>
+	</div>
 
-        @-webkit-keyframes fade-in { 0% { opacity: 0; } 100% { opacity: 1; } }
-        @keyframes fade-in { 0% { opacity: 0; } 100% { opacity: 1; } }
-        .sf-toolbar { opacity: 0; -webkit-animation: fade-in 1s .2s forwards; animation: fade-in 1s .2s forwards;}
-    }
-</style>
+	<div class="col-xs-12 col-lg-8">
+		<div class="table-responsive">
+			<table class="table table-bordered js-table" id="table_main">
+				<thead>
+					<tr>
+						<th>Machine</th>
+						<th>New</th>
+						<th>Old</th>
+						<th>Difference</th>
+						<th>Credits</th>
+						<th>Din</th>
+					</tr>
+				</thead>
+				{% for machine in machines %}
+					{% if machine.visible == true or machine.inValue is not empty or machine.outValue is not empty %}
+					<tr class="js-machValue" data-ratio="{{ machine.ratio }}" data-type="{{ machine.type }}">
+						<td class="machine" rowspan="2">{{ machine.name }}</td>
+						<td class="js-form-wrapper js-in" data-machine="{{ machine.id }}" {% if machine.inValue.value is defined %}data-id="{{ machine.inValue.id }}" data-inValue="{{ machine.inValue.value }}" data-date="{{ machine.inValue.date|date("Y-m-d") }}"{% endif %}></td>
+						<td class="js-machInOld js-format" data-invalueold="{{ machine.inFindValueOld }}">{{ machine.inFindValueOld }}</td>
+						<td class="js-machInDiff js-format" data-type="{{ machine.type }}"></td>
+						<td rowspan="2" class="js-credits js-format"></td>
+						<td rowspan="2" class="js-din js-format" data-type="{{ machine.type }}"></td>
+					</tr>
+					<tr class="js-machValueOut">
+						<td class="js-form-wrapper js-out" data-machine="{{ machine.id }}" {% if machine.outValue.value is defined %}data-id="{{ machine.outValue.id }}" data-outValue="{{ machine.outValue.value }}" data-date="{{ machine.outValue.date|date("Y-m-d") }}"{% endif %}></td>
+						<td class="js-machOutOld js-format" data-outvalueold="{{ machine.outFindValueOld }}">{{ machine.outFindValueOld }}</td>
+						<td class="js-machOutDiff js-format"></td>
+					</tr>
+				{% endif %}
+				{% endfor %}
+				{% for machineType in machineTypes %}
+					{% if machineType.haveJackpot == true  %}
+						<tr data-type-name="{{ machineType.name }}" data-type="{{ machineType.id }}" {% if machineType.jackpot.value is defined %}data-id="{{ machineType.jackpot.id }}" data-jp="{{ machineType.jackpot.value }}" data-date="{{ machineType.jackpot.date|date("Y-m-d") }}"{% endif %}>
+							<td class="jackpot" colspan="5">{{ machineType.name }} Jackpot</td>
+							<td class="js-form-wrapper js-jp"></td>
+						</tr>
+					{% endif %}
+				{% endfor %}
+				<tr>
+					<td class="total" colspan="5">Total</td>
+					<td id="js-total" class="js-format"></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+
+	<div class="col-xs-12 col-sm-6 col-lg-4">
+		<div  class="table-responsive">
+			<table class="table table-bordered js-table" id="statistics">
+				<tr>
+					<th>Type</th>
+					<th>In</th>
+					<th>Profit</th>
+					<th>%</th>
+				</tr>
+				{% for machineType in activeTypes %}
+				<tr class="js-statistics" data-type="{{ machineType.name }}">
+					<td class="machine-type-name">{{ machineType.name }}</td>
+					<td class="js-inValue js-format"></td>
+					<td class="js-profit js-format"></td>
+					<td class="js-percentage"></td>
+				</tr>
+				{% endfor %}
+			</table>
+		</div>
+	</div>
+
+	<div class="col-xs-12 col-sm-6 col-lg-4">
+		<div class="table-responsive">
+			<table class="table table-bordered js-table" id="cash_register" {% if app.request.get('date') is defined %}data-date="{{ app.request.get('date')|date("Y-m-d") }}"{% endif %}>
+				<caption>Cash Register</caption>
+				<tr class="js-cash-register-log">
+					<td colspan="2">{{ render(controller('AppBundle:CashRegister:new', { 'date': date_db })) }}</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td class="total-name">Total</td>
+					<td class="total-value js-format" id="js-total-cash"></td>
+					<td></td>
+				</tr>
+			</table>
+		</div>
+		{% if date_db is not null %}
+			<a href="{{ path('pdf_create', { 'date': date|date("d.m.Y.") }) }}" class="btn btn-sm btn-primary pdf" target="blank"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> pdf</a>
+			<a href="//pdfcrowd.com/url_to_pdf/">Save to PDF</a>
+		{% endif %}
+	</div>
+
+
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+	<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/js/bootstrap-datepicker.min.js"></script>
+
+	<script>
+		jQuery(document).ready(function() {
+			$('.js-datepicker').datepicker({
+				format: 'dd.mm.yyyy.'
+			});
+		});
+	</script>
+
+	<script src="{{ asset('js/jquery.priceformat.min.js') }}"></script>
+
+	<script src="{{ asset('js/App.js') }}"></script>
+
+	<script type="text/template" id="js-inValue-template">
+		<td class="js-form-wrapper js-in">
+			<form name="in_value_form" method="post" action="" data-url="/invalue/<%= id %>/edit" class="js-form form-horizontal">
+				<div style="display:none">
+					<div class="form-group">
+						<label class="col-sm-2 control-label required" for="in_value_form_machine">Machine</label>
+						<div class="col-sm-8">
+							<input id="in_value_form_machine" name="machine" required="required" class="form-control" value="<%= machine %>" type="text">
+						</div>
+					</div>
+				</div>
+				<input id="in_value_form_value" name="value" class="js-format submitreplacement form-control" value="<%= value %>" type="text">
+				<div style="display:none">
+					<div class="form-group">
+						<label class="col-sm-2 control-label required" for="in_value_form_date">Date</label>
+						<div class="col-sm-8">
+							<input id="in_value_form_date" name="date" required="required" class="form-control" value="{{ app.request.get('date')|date("Y-m-d") }}" type="date">
+						</div>
+					</div>
+				</div>
+			</form>
+		</td>
+	</script>
+
+	<script type="text/template" id="js-inValue-new-template">
+		<td class="js-form-wrapper js-in">
+			<form name="in_value_form" method="post" action="" data-url="/invalue/new" class="js-form form-horizontal js-new">
+				<input id="in_value_form_machine" name="machine" value="<%= machine %>" type="hidden">
+				<input id="in_value_form_value" name="value" class=" js-format submitreplacement form-control" type="text">
+				<div style="display:none">
+					<div class="form-group">
+						<label class="col-sm-2 control-label required" for="in_value_form_date">Date</label>
+						<div class="col-sm-8">
+							<input id="in_value_form_date" name="date" required="required" class="form-control" value="{{ date|date("Y-m-d") }}" type="date">
+						</div>
+					</div>
+				</div>
+			</form>
+		</td>
+	</script>
+
+	<script type="text/template" id="js-outValue-template">
+		<td class="js-form-wrapper js-out">
+			<form name="out_value_form" method="post" action="" data-url="/outvalue/<%= id %>/edit" class="js-form form-horizontal">
+				<div style="display:none">
+					<div class="form-group">
+						<label class="col-sm-2 control-label required" for="out_value_form_machine">Machine</label>
+						<div class="col-sm-8">
+							<input id="out_value_form_machine" name="machine" required="required" class="form-control" value="<%= machine %>" type="text">
+						</div>
+					</div>
+				</div>
+				<input id="out_value_form_value" name="value" class="js-format submitreplacement form-control" value="<%= value %>" type="text">
+				<div style="display:none">
+					<div class="form-group">
+						<label class="col-sm-2 control-label required" for="out_value_form_date">Date</label>
+						<div class="col-sm-8">
+							<input id="out_value_form_date" name="date" required="required" class="form-control" value="{{ app.request.get('date')|date("Y-m-d") }}" type="date">
+						</div>
+					</div>
+				</div>
+			</form>
+		</td>
+	</script>
+
+	<script type="text/template" id="js-outValue-new-template">
+		<td class="js-form-wrapper js-out">
+			<form name="out_value_form" method="post" action="" data-url="/outvalue/new" class="js-form form-horizontal js-new">
+				<input id="out_value_form_machine" name="machine" value="<%= machine %>" type="hidden">
+				<input id="out_value_form_value" name="value" class="js-format submitreplacement form-control" type="text">
+				<div style="display:none">
+					<div class="form-group">
+						<label class="col-sm-2 control-label required" for="out_value_form_date">Date</label>
+						<div class="col-sm-8">
+							<input id="out_value_form_date" name="date" required="required" class="form-control" value="{{ date|date("Y-m-d") }}" type="date">
+						</div>
+					</div>
+				</div>
+			</form>
+		</td>
+	</script>
+
+	<script type="text/template" id="js-jp-template">
+		<td class="js-form-wrapper js-jp">
+			<form name="jackpot_form" method="post" action="" data-url="/jp/<%= id %>/edit" class="js-form form-horizontal">
+				<input id="jackpot_form_machineType" name="machineType" value="<%= machineType %>" type="hidden">
+				<input id="jackpot_form_value" name="value" class="js-format submitreplacement js-jp-din jp form-control" value="<%= value %>" type="text">
+				<div style="display:none">
+					<label class="col-sm-2 control-label required" for="jackpot_form_date">Date</label>
+					<div class="col-sm-8">
+						<input id="jackpot_form_date" name="date" required="required" class="form-control" value="{{ app.request.get('date')|date("Y-m-d") }}">
+					</div>
+				</div>
+			</form>
+		</td>
+	</script>
+
+	<script type="text/template" id="js-jp-new-template">
+		<td class="js-form-wrapper js-jp">
+			<form name="jackpot_form" method="post" action="" data-url="/jp/new" class="js-form form-horizontal">
+				<input id="jackpot_form_machineType" name="machineType" value="<%= machineType %>" type="hidden">
+				<input id="jackpot_form_value" name="value" class="js-format submitreplacement js-jp-din jp form-control" type="text">
+				<div style="display:none">
+					<label class="col-sm-2 control-label required" for="jackpot_form_date">Date</label>
+					<div class="col-sm-8">
+						<input id="jackpot_form_date" name="date" required="required" class="form-control" value="{{ date|date("Y-m-d") }}">
+					</div>
+				</div>
+			</form>
+		</td>
+	</script>
+
+	<script type="text/template" id="js-cash-register-row-template">
+	   <tr class="js-cash-register-log">
+		   <td colspan="2">
+			   <form name="cash_register_form" method="post" action="/cr/<%= id %>/edit" class="js-form form-horizontal" data-url="/cr/<%= id %>/edit">
+				   <input id="cash_register_form_name" name="name" class="submitreplacement name form-control" type="text"  value="<%= name %>">
+				   <input id="cash_register_form_value" name="value" class="js-format submitreplacement value form-control js-cr-log" type="text" value="<%= value %>">
+				   <div style="display:none">
+					   <div class="form-group ">
+						   <label class="col-sm-2 control-label required" for="cash_register_form_date">Date</label>
+						   <div class="col-sm-8">
+							   <input type="date" id="cash_register_form_date" name="date" required="required" class="form-control" value="{{ app.request.get('date')|date("Y-m-d") }}">
+						   </div>
+					   </div>
+				   </div>
+
+			   </form>
+		   </td>
+		   <td class="del-cr">
+			   <a href="#" class="js-delete-cash-register" data-url="/cr_delete/<%= id %>">
+					<span class="fa fa-trash"></span>
+				</a>
+		   </td>
+	   </tr>
+	</script>
+
 {% endblock %}

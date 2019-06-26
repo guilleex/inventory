@@ -1,13 +1,99 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" >
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+
+		<title>
+			{%- if block('title') is defined -%}
+				Inventory | {{- block('title') -}}
+			{%- else -%}
+				Inventory
+			{%- endif -%}
+		</title>
+
+		{% block stylesheets %}
+			<link rel="stylesheet" href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}">
+			<link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+			<link rel="stylesheet" href="{{ asset('vendor/fontawesome/css/font-awesome.min.css') }}">
+		{% endblock %}
+		<link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+
+	</head>
+
+	<body>
+		<div class="container">
+			<div class="row">
+			<header>
+				<nav class="navbar navbar-default" id="main_nav">
+					<div class="container-fluid nav_container">
+						<div class="row">
+							<div class="navbar-header">
+								<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+									<span class="sr-only">Toggle navigation</span>
+									<span class="icon-bar"></span>
+									<span class="icon-bar"></span>
+									<span class="icon-bar"></span>
+								</button>
+								<!-- <a class="navbar-brand" href="#">Brand</a> -->
+							</div>
+							<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+								<ul class="nav navbar-nav">
+									<li role="presentation" {% if app.request.get('_route') == 'home' %} class="active" {% endif %}><a href="{{ path('home') }}" class="current">Daily</a></li>
+									<li role="presentation" {% if app.request.get('_route') == 'periodic' %} class="active" {% endif %}><a href="{{ path('periodic') }}" class="current">Periodic</a></li>
+									<li role="presentation" {% if app.request.get('_route') starts with 'cash' %} class="active" {% endif %}><a href="{{ path('cash_list') }}" class="current">Expenses</a></li>
+									<li role="presentation" {% if app.request.attributes.get('_route') starts with 'income' %} class="active" {% endif %}><a href="{{ path('income_list') }}">Salaries</a></li>
+									{% if is_granted('ROLE_ADMIN') %}
+										<li role="presentation" {% if app.request.get('_route') starts with 'setings' %} class="active" {% endif %}><a href="{{ path('setings') }}" class="current">Setings</a></li>
+									{% endif %}
+									<li role="presentation" {% if app.request.attributes.get('_route') starts with 'user' %} class="active" {% endif %}><a href="{{ path('users') }}">Users</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</nav>
+				<div id="logo" class="col-xs-8 col-sm-6">
+					<a class="text-hide" href="{{ path('home') }}">Inventory</a>
+				</div>
+				<div class="col-xs-4 col-sm-6">
+					<div class="account">
+						<a href="{{ path('account_edit') }}"><b>{{ app.user.username }}</b></a>
+						<a href="{{ path('logout') }}">[logout]</a>
+					</div>
+				</div>
+			</header>
+			</div>
+		</div>
+
+		<div class="container">
+			<div class="row">
+				{% if app.session.flashBag.has('success') %}
+					<div class="msg alert alert-success col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4">
+						{% for msg in app.session.flashBag.get('success') %}
+							{{ msg }}
+						{% endfor %}
+					</div>
+				{% endif %}
+			</div>
+		</div>
+
+		<div class="container">
+			<div class="row">
+				{% block left_sidebar %}{% endblock %}
+				{% block body %}{% endblock %}
+			</div>
+		</div>
+
+		{% block javascripts %}
+			<script src="{{ asset('vendor/jquery/jquery-2.2.4.min.js') }}"></script>
+			<script src="{{ asset('vendor/bootstrap/js/bootstrap.min.js') }}"></script>
+			<script src="{{ asset('vendor/underscore/underscore-min.js') }}"></script>
+			<script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+			{#<script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>#}
+			<script src="/js/fos_js_routes.js"></script>
+		{% endblock %}
+
+	</body>
 </html>

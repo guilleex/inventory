@@ -1,0 +1,806 @@
+html {
+    background: #EEEEEE;
+    height: 100%;
+}
+
+body {
+    max-width: 1200px;
+    margin: 0 auto;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    min-height: 100%;
+    border-top: 3px solid #337AB7;
+}
+
+li {
+    list-style-type: none;
+}
+
+label {
+    color: #286090;
+}
+
+/* header */
+header {
+    color: #fff;
+}
+
+#logo {
+    display: block;
+    margin-top: -70px;
+    height: 145px;
+}
+
+#logo a {
+    display: block;
+    height: 100%;
+    background: url(../images/casino.png) no-repeat;
+    background-size: contain;
+}
+
+.account {
+    float: right;
+}
+
+.account a {
+    text-align: right;
+    float: right;
+    width: 100%;
+}
+
+.account b {
+    font-size: 1.1em;
+}
+
+.account a:hover{
+    text-decoration: none;
+    color: darkgray;
+}
+
+/* main nav */
+#main_nav {
+    background: transparent;
+    border: none;
+    z-index: 1;
+}
+
+#main_nav ul {
+    float: right;
+}
+
+.navbar {
+    min-height: 0;
+    border-left: none;
+    border-right: none;
+}
+
+#main_nav li {
+    text-align: center;
+}
+
+.navbar-collapse {
+    border: none;
+}
+
+#main_nav li a:hover,
+.navbar-default .navbar-nav > .active > a {
+    background-color: #337AB7;
+    color: white;
+}
+
+.navbar-nav > li > a {
+    padding: 10px 15px;
+}
+
+.nav_container {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+/* date picker */
+.daily-date-picker,
+.periodic-date-picker {
+    text-align: center;
+    margin: 25px 0 50px 0;
+    border-color: #337AB7;
+}
+
+.date_picker_form_date,
+.date_picker_form_date_old {
+    width: 160px;
+    text-align: center;
+}
+
+.periodic-date-picker {
+    text-align: center;
+}
+
+/* table */
+#table_main,
+#statistics,
+#cash_register {
+    text-align: center;
+    box-shadow: 1px 1px 5px #aaaaaa;
+}
+
+#table_main {
+    min-width: 738px;
+}
+
+#statistics,
+#cash_register,
+#expenses_table {
+    min-width: 330px;
+}
+
+#statistics,
+#cash_register {
+    margin-top: 15px;
+}
+
+#table_main th {
+    width: 15%;
+}
+#table_main th:first-child {
+    width: 23%;
+    border-left: 1px solid #007135;
+}
+
+#table_main th:last-child {
+    width: 17%;
+    border-right: 1px solid #007135;
+}
+
+#table_main th,
+#statistics th,
+caption {
+    font-size: 115%;
+    background: #337AB7;
+    color: white;
+    font-weight: normal;
+    height: 30px;
+    padding: 0;
+    text-align: center;
+    vertical-align: middle;
+}
+
+caption {
+    padding-top: 4px;
+}
+
+caption.h4 {
+    color: white;
+}
+
+#table_main .machine,
+#table_main .jackpot,
+#table_main .total {
+    text-align: left;
+    padding: 0 0 0 2%;
+    font-size: 1.3em;
+}
+
+#table_main .jackpot {
+    height: 45px;
+}
+
+#table_main .total {
+    height: 50px;
+}
+
+#table_main td {
+    font-size: 1.1em;
+    text-align: center;
+    vertical-align: middle;
+    padding: 0;
+    height: 40px;
+}
+
+#table_main input {
+    font-size: 1em;
+    border: none;
+    text-align: right;
+    height: 40px;
+    padding: 0 5px;
+    outline: none;
+    color: #333;
+}
+
+#table_main input.jp {
+    text-align: center;
+}
+
+#statistics th:nth-child(1) {
+    width: 35%;
+}
+
+#statistics th:nth-child(2),
+#statistics th:nth-child(3) {
+    width: 26%;
+}
+
+#statistics td {
+    font-size: 1.1em;
+}
+
+#statistics .machine-type-name {
+    text-align: left;
+}
+
+#cash_register td {
+    padding: 0;
+    height: 35px;
+}
+
+#cash_register input.name,
+#cash_register input.value {
+    float: left;
+    outline: none;
+    font-size: 1.1em;
+    vertical-align: middle;
+    border: none;
+    color: #333;
+}
+
+#cash_register input.name {
+    width: 70%;
+    padding-left: 2%;
+    border-right: 1px solid #ddd;
+    border-radius: 0;
+}
+
+#cash_register input.value {
+    width: 30%;
+    text-align: right;
+    padding: 1% 2% 0 0;
+}
+
+#cash_register td.del-cr {
+    width: 10%;
+    vertical-align: middle;
+}
+
+#cash_register td.total-name {
+    width: 62.7%;
+    vertical-align: middle;
+    text-align: left;
+    font-size: 1.1em;
+    padding-left: 2%;
+}
+
+#cash_register td.total-value {
+    width: 27.3%;
+    vertical-align: middle;
+    text-align: right;
+    font-size: 1.1em;
+    padding-right: 2%;
+}
+
+a.pdf {
+    margin-top: 20px;
+}
+
+/* expenses */
+.expenses {
+    text-align: center;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+.expenses-name {
+    width: 100%;
+}
+
+select#name {
+    width: 250px;
+    margin-bottom: 25px;
+}
+
+#expenses_table {
+    margin-top: 35px;
+    text-align: center;
+    border-collapse: separate;
+    border: none;
+}
+
+#expenses_table th {
+    text-align: center;
+    background: #337AB7;
+    color: white;
+    padding: 3px;
+    border: none;
+}
+
+#expenses_table td {
+    border: none;
+    border-top: 1px dotted #337AB7;
+}
+
+#expenses_table td.total {
+    border-top: 1px solid #337AB7;
+    border-bottom: 2px solid #337AB7;
+    font-size: 1.1em;
+    padding: 3px;
+}
+
+.pagination>li>a,
+.pagination>li>span {
+    padding: 3px 9px;
+}
+
+.pag_nav {
+    text-align: center;
+}
+
+/* Users*/
+table.users,
+#account-edit form {
+    margin-top: 50px;
+}
+
+a.btn-new-user {
+    margin-top: 20px;
+}
+
+#user-edit h2 {
+    margin-bottom: 35px;
+    text-align: center;
+    color: #286090;
+}
+
+#user-edit label,
+#account-edit label {
+    text-align: right;
+    width: 150px;
+}
+
+#account-edit .form-group {
+    margin-bottom: 35px;
+}
+
+#user-edit .form-group:nth-child(6) label,
+#account-edit .form-group:nth-child(3) label {
+    margin-top: -10px;
+}
+
+#user-edit .form-group:nth-child(7) {
+    width: 50%;
+    float: left;
+}
+
+#user-edit .form-group:nth-child(8) {
+    width: 50%;
+    float: right;
+}
+
+#user-edit .form-group:nth-child(7) label {
+    text-align: right;
+    width: 100%;
+}
+
+#user-edit .form-group:nth-child(8) label {
+    text-align: left;
+}
+
+#user-edit form button {
+    margin: 40px 0 0 25px;
+}
+
+#account-edit form button {
+    margin: 10px 0 0 135px;
+}
+
+#user-edit form:nth-child(3) button {
+    float: left;
+    margin: -25px 0 0 140px;
+}
+
+/* Setings & Salaries*/
+#machine-setings h4,
+#machine-setings span.navbar-brand,
+#salaries-setings h4,
+#salaries-setings span.navbar-brand {
+    color: #286090;
+    font-weight: bold;
+}
+
+#machine-setings-form h3,
+#salaries-setings-form h3{
+    color: #286090;
+    margin-bottom: 45px;
+}
+
+#machine-setings .sidebar-nav,
+#salaries-setings .sidebar-nav {
+    margin-bottom: 45px;
+}
+
+#machine-setings ul,
+#salaries-setings ul {
+    margin: 15px 0 15px 0;
+}
+
+#machine-setings a,
+#salaries-setings a {
+    padding: 2px 0 2px 20px;
+    width: 100%;
+    display: block;
+}
+
+#machine-setings a.active,
+#machine-setings a:hover,
+#salaries-setings a.active,
+#salaries-setings a:hover {
+    background-color: #337AB7;
+    color: white;
+    text-decoration: none;
+}
+
+#machine-setings-form button,
+#salaries-setings-form button {
+    margin-top: 30px;
+}
+
+#machine-setings-form button.del {
+    margin-right: 80px;
+}
+
+#salaries-setings-form table {
+    margin-bottom: 35px;
+    box-shadow: 1px 1px 5px #aaaaaa;
+}
+
+#salaries-setings-form h2 {
+    color: #286090;
+    padding-left: 25px;
+    margin-top: 10px;
+}
+
+#salaries-setings-form h3 {
+    color: #286090;
+    font-weight: bold;
+    margin: 0 0 30px 0;
+}
+
+#salaries-setings-form h5 {
+    color: #286090;
+    font-weight: bold;
+    margin: 45px 0 20px 0;
+}
+
+#salaries-setings-form span {
+    color: #286090;
+}
+
+#salaries-setings-form th {
+    font-size: 115%;
+    background: #337AB7;
+    color: white;
+    font-weight: normal;
+    height: 30px;
+    padding: 0 0 0 15px;
+    vertical-align: middle;
+}
+
+#salaries-setings-form a {
+    margin: 3px 35px 0 0;
+}
+
+#salaries-setings-form button.del {
+    margin: 30px 0 0 -35px;
+}
+
+#salaries-setings-form td {
+    padding: 0;
+    height: 35px;
+    border: 1px solid #ddd;
+}
+
+#salaries-setings-form input.date,
+#salaries-setings-form input.value {
+    float: left;
+    border: none;
+    width: 100px;
+    font-size: 1.1em;
+    vertical-align: middle;
+    color: #333;
+    text-align: center;
+}
+
+#salaries-setings-form input.date {
+    padding-left: 2%;
+    border-right: 1px solid #ddd;
+    border-radius: 0;
+}
+
+#salaries-setings-form input.value {
+    padding: 1% 2% 0 0;
+}
+
+#salaries-setings-form .del-rec {
+    vertical-align: middle;
+    text-align: center;
+}
+
+#salaries-setings-form .del-rec a {
+    margin: 0;
+}
+
+#salaries-setings-form tfoot>tr>td:first-child,
+#salaries-setings-form tfoot>tr>td:nth-child(2) {
+    vertical-align: middle;
+    font-size: 1.1em;
+    text-align: center;
+}
+
+@media (min-width: 1200px) {
+
+    #statistics {
+        margin-top: 0;
+    }
+
+    select#name {
+        width: 250px;
+    }
+
+    #salaries-setings-form input.date,
+    #salaries-setings-form tfoot>tr>td:first-child {
+        width: 157px;
+    }
+
+    #salaries-setings-form input.value {
+        width: 155px;
+    }
+
+    #salaries-setings-form .del-rec {
+        width: 31px;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+    #salaries-setings-form input.date,
+    #salaries-setings-form tfoot>tr>td:first-child {
+        width: 105px;
+    }
+
+    #salaries-setings-form input.value {
+        width: 103px;
+    }
+
+    #salaries-setings-form .del-rec {
+        width: 27px;
+    }
+}
+
+@media (max-width: 991px) {
+
+    #logo {
+        height: 100px;
+        margin-top: -55px;
+    }
+
+    #salaries-setings-form input.date,
+    #salaries-setings-form tfoot>tr>td:first-child {
+        width: 140px;
+    }
+
+    #salaries-setings-form input.value {
+        width: 138px;
+    }
+
+    #salaries-setings-form .del-rec {
+        width: 35px;
+    }
+
+}
+
+@media (max-width: 767px) {
+    /* header */
+    header {
+        background-size: contain;
+        height: 150px;
+    }
+
+    #logo {
+        height: 140px;
+        margin-top: -23px;
+    }
+
+    #logo a {
+        background-position: 0 -27px;
+    }
+
+    .account {
+        float: right;
+    }
+
+
+    /* main nav */
+    .navbar {
+        border: none;
+    }
+
+    #main_nav ul {
+        float: none;
+        margin: 0 5px 0 15px;
+    }
+    #main_nav li {
+        margin: 0 auto;
+        border-right: none;
+    }
+
+    .navbar-collapse {
+        margin-top: -35px;
+        background: white;
+    }
+
+    .navbar-toggle {
+        float: right;
+        height: 34px;
+        margin: 15px 30px 0 0;
+        padding: 5px;
+        background-color: buttonface;
+    }
+
+    .navbar-default .navbar-toggle .icon-bar {
+        background-color: #337ab7;
+    }
+
+    /* date picker */
+    .daily-date-picker {
+        margin-left: 15px;
+    }
+    .daily-date-picker .form-group {
+        float: left;
+    }
+
+    .daily-date-picker button {
+        float: left;
+        margin: 1px 0 0 5px;
+    }
+
+    .date_picker_form_date,
+    .date_picker_form_date_old {
+        width: 220px;
+    }
+
+    .periodic-date-picker {
+        text-align: left;
+        margin-left: 15px;
+    }
+
+    .periodic-date-picker {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    /* table */
+    .table-responsive {
+        border: none;
+    }
+
+    #table_main,
+    #statistics,
+    #cash_register {
+        border: 1px solid #ddd;
+        margin-top: 50px;
+    }
+
+    /* expenses */
+    .expenses {
+        text-align: left;
+    }
+
+    select#name {
+        width: 100%;
+        margin-bottom: 25px;
+    }
+
+    /* users */
+    #user-edit h2 {
+        text-align: left;
+    }
+    #user-edit label,
+    #account-edit label {
+        text-align: left;
+        width: 200px;
+    }
+
+    #account-edit form button {
+        margin: 30px 0 0 0;
+    }
+
+    /* Setings & Salaries*/
+    #machine-setings h4,
+    #salaries-setings h4 {
+        display: none;
+    }
+
+    #machine-setings ul {
+        text-align: left;
+        margin: 0;
+    }
+
+    #machine-setings a {
+        padding: 0;
+    }
+
+    #machine-setings .navbar-collapse {
+        float: left;
+        margin: 10px 0 0 0;
+        width: 90%;
+    }
+
+    #machine-setings a {
+        width: 90%;
+    }
+
+    #machine-setings-form button.del {
+        margin-right: 0;
+    }
+
+    #salaries-setings-form a {
+        margin: 30px -20px 0 0;
+    }
+
+    #salaries-setings-form button.del {
+        margin: 30px 0 0 0;
+        float: right;
+    }
+
+    #salaries-setings-form input.date {
+        width: 50%;
+    }
+
+    #salaries-setings-form tfoot>tr>td:first-child {
+        width: 45%;
+    }
+
+    #salaries-setings-form input.value {
+        width: 50%;
+    }
+
+    #salaries-setings-form .del-rec {
+        width: 10%;
+    }
+}
+
+.form-horizontal .value_label {
+    text-align: left;
+}
+
+/* make sidebar nav vertical */
+@media (min-width: 768px) {
+    .sidebar-nav .navbar .navbar-collapse {
+        padding: 0;
+        max-height: none;
+    }
+    .sidebar-nav .navbar ul {
+        float: none;
+        display: block;
+    }
+    .sidebar-nav .navbar li {
+        float: none;
+        display: block;
+    }
+    .sidebar-nav .navbar li a {
+        padding-top: 12px;
+        padding-bottom: 12px;
+    }
+}
+
+.msg {
+    text-align: center;
+}
+
+.form_errors {
+    text-align: center;
+}
+
+.ratio_widget {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.checkbox label {
+    font-weight: bold;
+}

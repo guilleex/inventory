@@ -1,0 +1,67 @@
+{% import _self as formMacros %}
+
+    {% macro printWorkerRow(workerForm, key) %}
+
+        <div class="form-page">
+
+            <a href="#" class="js-worker-remove pull-right">
+                <span class="fa fa-close"></span>
+            </a>
+
+            {{ form_errors(workerForm) }}
+            {{ form_row(workerForm.name) }}
+
+            {#<div class="row js-input-wrapper_{{ key }} js-inputs"#}
+                 {#data-prototype="{{ form_widget(workerForm.incomeInputs.vars.prototype)|e('html_attr') }}"#}
+                 {#data-index="{{ workerForm.incomeInputs|length }}"#}
+                 {#data-worker="{{ key }}">#}
+
+                {#{% for incomeInputForm in workerForm.incomeInputs %}#}
+
+                        {#<div class="col-xs-4 js-incomeInput-item">#}
+                            {#<a href="#" class="js-incomeInput-remove pull-right">#}
+                                {#<span class="fa fa-close"></span>#}
+                            {#</a>#}
+
+                            {#{{ form_errors(incomeInputForm) }}#}
+                            {#{{ form_row(incomeInputForm.date) }}#}
+                            {#{{ form_row(incomeInputForm.value) }}#}
+
+                        {#</div>#}
+
+                {#{% endfor %}#}
+            {#</div>#}
+
+            {#{% do workerForm.incomeInputs.setRendered() %}#}
+        </div>
+    {% endmacro %}
+
+{{ form_start(incomeForm) }}
+    {{ form_errors(incomeForm) }}
+
+    {{ form_row(incomeForm.name) }}
+
+    {{ form_row(incomeForm.value) }}
+
+    <h5>Workers:</h5>
+    <div class="js-worker-wrapper"
+         data-prototype="{{ formMacros.printWorkerRow(incomeForm.workers.vars.prototype)|e('html_attr') }}"
+         data-index="{{ incomeForm.workers|length }}">
+
+        {% for key, workerField in incomeForm.workers %}
+                {{ formMacros.printWorkerRow(workerField, key) }}
+
+        {% endfor %}
+
+        <a href="#" class="js-worker-add">
+            <span class="fa fa-plus-circle"></span>
+            Add Another Worker
+        </a>
+    </div>
+
+
+     {# prevents weird label from showing up in new #}
+     {{ form_widget(incomeForm.workers) }}
+    <button type="submit" class="btn btn-primary pull-left" formnovalidate>Save</button>
+
+{{ form_end(incomeForm) }}

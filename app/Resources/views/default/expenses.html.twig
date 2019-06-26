@@ -1,0 +1,107 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{ 'expenses' }}
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/css/bootstrap-datepicker.css">
+{% endblock %}
+
+{% block body %}
+	<div class="expenses col-xs-8 col-xs-offset-2 col-sm-10 col-sm-offset-1">
+		<form class="form-inline" method="get">
+
+			<div class="expenses-name form-group">
+				<label for="name" class="sr-only name">Name</label>
+				<select name="name" class="form-control" id="name">
+					<option value=”” disabled selected>-- Expenses --</option>
+					{% for name in names %}
+							<option {% if selected_name is not null and selected_name == name.name %}selected{% endif %}>{{ name.name }}</option>
+					{% endfor %}
+				</select>
+			</div>
+
+			<div class="form-group">
+				<label class="control-label required" for="date_picker_form_date_old">Start</label>
+					<input id="date_picker_form_date_old" class="date_picker_form_date_old js-datepicker form-control" name="date_old" required="required" type="text"
+							{% if date_old is defined %} value="{{ date_old|date("d.m.Y.") }}"{% endif %}>
+			</div>
+
+			<div class="form-group">
+				<label class="required" for="date_picker_form_date">End</label>
+					<input id="date_picker_form_date" class="date_picker_form_date js-datepicker form-control" name="date" required="required" type="text"
+							{% if date is defined %} value="{{ date|date("d.m.Y.") }}"{% endif %}>
+			</div>
+
+			<button type="submit" class="btn btn-primary btn-sm">Go</button>
+		</form>
+	</div>
+
+	{% if app.request.get('date') is not null and app.request.get('date_old') is not null %}
+
+		<div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
+			<div class="table-responsive">
+				<table id="expenses_table" class="table table-bordered">
+					<thead>
+						<th>Date</th>
+						<th>Plus</th>
+						<th>Minus</th>
+					</thead>
+					{% for cr in pagination %}
+					<tr>
+						<td>{{ cr.date|date("d.m.Y") }}</td>
+						<td class="js-format">{% if cr.value > 0 %}{{ cr.value }}{% endif %}</td>
+						<td class="js-format">{% if cr.value < 0 %}{{ cr.value }}{% endif %}</td>
+					</tr>
+					{% endfor %}
+					<tr>
+						<td class="total">- Total -</td>
+						<td class="total js-format">{% if sumPlus is defined %}{{ sumPlus }}{% endif %}</td>
+						<td class="total js-format">{% if sumMinus is defined %}{{ sumMinus }}{% endif %}</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		{# total items count #}
+		<div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
+			<p>Count : {{ pagination.getTotalItemCount }}</p>
+		</div>
+
+		{# display navigation #}
+		<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 pag_nav">
+			<nav aria-label="Page navigation">
+				{{ knp_pagination_render(pagination) }}
+			</nav>
+		</div>
+	{% endif %}
+
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+	<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/js/bootstrap-datepicker.min.js"></script>
+	<script>
+		jQuery(document).ready(function() {
+			$('.js-datepicker').datepicker({
+				format: 'dd.mm.yyyy.'
+			});
+		});
+	</script>
+
+	<script src="{{ asset('js/jquery.priceformat.min.js') }}"></script>
+
+		<script>
+		jQuery(document).ready(function() {
+			$('.js-format').priceFormat({
+				allowNegative: true,
+				clearPrefix: true,
+				prefix: '',
+				centsLimit: 0,
+				thousandsSeparator: ',',
+				clearOnEmpty: true
+			});
+		});
+	</script>
+{% endblock %}

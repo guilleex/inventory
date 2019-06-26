@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" >
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>{{ date_old }}</title>
+
+    <link rel="stylesheet" href="{{ pathToWeb }}/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ pathToWeb }}/css/styles-pdf.css">
+
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <h1>{{ date_old }} - {{ date }}</h1>
+<div class="col-xs-12">
+
+        <table class="table table-bordered js-table" id="main">
+            <thead>
+            <tr>
+                <th>Machine</th>
+                <th>New</th>
+                <th>Old</th>
+                <th>Difference</th>
+                <th>Credits</th>
+                <th>Din</th>
+            </tr>
+            </thead>
+            {% for machine in machines %}
+                {% if machine.inFindValue is defined and machine.outFindValue is defined %}
+                    <tr class="js-machValue" data-ratio="{{ machine.ratio }}" data-type="{{ machine.type }}">
+                        <td class="machine" rowspan="2">{{ machine.name }}</td>
+                        <td class="js-machIn js-format value">{{ machine.inFindValue }}</td>
+                        <td class="js-machInOld js-format value">{{ machine.inFindValueOld }}</td>
+                        <td class="js-machInDiff js-format"></td>
+                        <td class="js-credits js-format" rowspan="2"></td>
+                        <td class="js-din js-format" rowspan="2"></td>
+                    </tr>
+                    <tr class="js-machValueOut">
+                        <td class="js-machOut js-format value">{{ machine.outFindValue }}</td>
+                        <td class="js-machOutOld js-format value">{{ machine.outFindValueOld }}</td>
+                        <td class="js-machOutDiff js-format"></td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+            {% for machineType in machineTypes %}
+                {% if machineType.haveJackpot == true  %}
+                    <tr>
+                        <td class="jackpot" colspan="5">{{ machineType.name }} Jackpot</td>
+                        <td class="js-jp-din js-format">{{ machineType.periodJackpot }}</td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+            <tr>
+                <td class="total" colspan="5">Total</td>
+                <td id="js-total" class="js-format"></td>
+            </tr>
+        </table>
+
+</div>
+
+<div class="col-xs-6">
+        <table class="table table-bordered js-table" id="statistics">
+            <tr>
+                <th>Type</th>
+                <th>In</th>
+                <th>Profit</th>
+                <th>%</th>
+            </tr>
+            {% for machineType in machineTypes %}
+                <tr class="js-statistics" data-type="{{ machineType.name }}">
+                    <td class="machine-type-name">{{ machineType.name }}</td>
+                    <td class="js-inValue  js-format"></td>
+                    <td class="js-profit  js-format"></td>
+                    <td class="js-percentage"></td>
+                </tr>
+            {% endfor %}
+        </table>
+</div>
+<div class="col-xs-6 salary">
+    <p>Salary: <b class="js-salary js-format"></b></p>
+</div>
+</div>
+</div>
+
+<script src="{{ pathToWeb }}/vendor/jquery/jquery-2.2.4.min.js"></script>
+<script src="{{ pathToWeb }}/js/jquery.priceformat.min.js"></script>
+<script src="{{ pathToWeb }}/js/pdf.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" >
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>
+        {%- if block('title') is defined -%}
+            Inventory | {{- block('title') -}}
+        {%- else -%}
+            Inventory
+        {%- endif -%}
+    </title>
+
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    {% endblock %}
+    {#<link rel="icon" type="image/x-icon" href="{{ asset('alien.ico') }}" />#}
+
+</head>
+
+<body>
+
+<div id="login">
+    <h1 id="header">v 2.0</h1>
+    {% if error %}
+        <div class="alert alert-danger">
+            {{ error.messageKey|trans(error.messageData, 'security') }}
+        </div>
+    {% endif %}
+    {{ form_start(form) }}
+    {{ form_errors(form) }}
+        <input type="text" id="login_form_username" name="login_form[_username]" placeholder="Username">
+        <input type="password" id="login_form_password" name="login_form[_password]" placeholder="Password">
+        {#<input type="button" value="Submit" id="button">#}
+        <button type="submit" id="button">Login</button>
+        {% do form._username.setRendered() %}
+        {% do form._password.setRendered() %}
+    {{ form_end(form) }}
+</div>
+
+{% block javascripts %}
+    <script src="{{ asset('js/index.js') }}"></script>
+{% endblock %}
+</body>
+</html>
+
+

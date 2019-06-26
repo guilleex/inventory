@@ -1,0 +1,120 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{ 'periodic' }}
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/css/bootstrap-datepicker.css">
+{% endblock %}
+
+{% block body %}
+	<div class="periodic-date-picker">
+		<form class="form-inline" method="get">
+			<div class="form-group">
+				<label class="control-label required" for="date_picker_form_date_old">Start Date</label>
+				<input id="date_picker_form_date_old" class="date_picker_form_date_old js-datepicker form-control" name="date_old" required="required" type="text"
+						{% if date_old is defined %} value="{{ date_old|date("d.m.Y.") }}"{% endif %}>
+			</div>
+			<div class="form-group">
+				<label class="control-label required" for="date_picker_form_date">End Date</label>
+				<input id="date_picker_form_date" class="date_picker_form_date js-datepicker form-control" name="date" required="required" type="text"
+						{% if date is defined %} value="{{ date|date("d.m.Y.") }}"{% endif %}>
+			</div>
+				<button type="submit" class="btn btn-primary btn-sm">Go</button>
+		</form>
+	</div>
+
+
+	{% if app.request.get('date') is not null and app.request.get('date_old') is not null %}
+
+		<div class="col-xs-12 col-lg-8">
+			<div class="table-responsive">
+				<table class="table table-bordered js-table" id="table_main">
+					<thead>
+					<tr>
+						<th>Machine</th>
+						<th>New</th>
+						<th>Old</th>
+						<th>Difference</th>
+						<th>Credits</th>
+						<th>Din</th>
+					</tr>
+					</thead>
+					{% for machine in machines %}
+					  {% if machine.inFindValue is defined and machine.outFindValue is defined %}
+						  <tr class="js-machValue" data-ratio="{{ machine.ratio }}" data-type="{{ machine.type }}">
+							<td class="machine" rowspan="2">{{ machine.name }}</td>
+							<td class="js-machIn js-format">{{ machine.inFindValue }}</td>
+							<td class="js-machInOld js-format">{{ machine.inFindValueOld }}</td>
+							<td class="js-machInDiff js-format"></td>
+							<td class="js-credits js-format" rowspan="2"></td>
+							<td class="js-din js-format" rowspan="2">{{ machine.ratio }}</td>
+						</tr>
+						<tr class="js-machValueOut">
+							<td class="js-machOut js-format">{{ machine.outFindValue }}</td>
+							<td class="js-machOutOld js-format">{{ machine.outFindValueOld }}</td>
+							<td class="js-machOutDiff js-format"></td>
+						</tr>
+					  {% endif %}
+					{% endfor %}
+					{% for machineType in machineTypes %}
+						{% if machineType.haveJackpot == true  %}
+							<tr>
+								<td class="jackpot" colspan="5">{{ machineType.name }} Jackpot</td>
+								<td class="js-jp-din js-format">{{ machineType.periodJackpot }}</td>
+							</tr>
+						{% endif %}
+					{% endfor %}
+					<tr>
+						<td class="total" colspan="5">Total</td>
+						<td id="js-total" class="js-format"></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+
+		<div class="col-xs-12 col-sm-6 col-lg-4">
+			<div  class="table-responsive">
+				<table class="table table-bordered js-table" id="statistics">
+					<tr>
+						<th>Type</th>
+						<th>In</th>
+						<th>Profit</th>
+						<th>%</th>
+					</tr>
+					{% for machineType in machineTypes %}
+					<tr class="js-statistics" data-type="{{ machineType.name }}">
+						<td class="machine-type-name">{{ machineType.name }}</td>
+						<td class="js-inValue  js-format"></td>
+						<td class="js-profit  js-format"></td>
+						<td class="js-percentage"></td>
+					</tr>
+					{% endfor %}
+				</table>
+                <a href="{{ path('pdf_periodic', { 'date_old': date_old|date("d.m.Y."), 'date': date|date("d.m.Y.")}) }}" class="btn btn-sm btn-primary pdf" target="blank"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> pdf</a>
+            </div>
+		</div>
+
+
+	{% endif %}
+
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+	<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/js/bootstrap-datepicker.min.js"></script>
+	<script>
+		jQuery(document).ready(function() {
+			$('.js-datepicker').datepicker({
+				format: 'dd.mm.yyyy.'
+			});
+		});
+	</script>
+
+	<script src="{{ asset('js/jquery.priceformat.min.js') }}"></script>
+
+	<script src="{{ asset('js/App.js') }}"></script>
+
+{% endblock %}

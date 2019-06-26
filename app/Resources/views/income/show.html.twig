@@ -1,0 +1,114 @@
+{% extends 'income/index.html.twig' %}
+
+{% block title %}
+	{{ salarie.name }}
+{% endblock %}
+
+{% block body %}
+<section class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-1 col-md-7 col-md-offset-0 col-lg-8 col-lg-offset-0 js-form-wrapper" id="salaries-setings-form">
+
+<h2>{{ salarie.name }}</h2>
+
+	{% for worker in salarie.workers %}
+		<div class="col-xs-12 col-md-6">
+			<div class="table-responsive">
+				<table class="table table-bordered js-table" data-worker="{{ worker.id }}" data-inputs="{{ worker.incomeInputs|length }}">
+					<thead>
+						<tr>
+							<th colspan="3">{{ worker.name }}</th>
+						</tr>
+					</thead>
+					<tfoot>
+						<tr>
+							<td>-- Total --</td>
+							<td class="js-sum"></td>
+							<td></td>
+						</tr>
+					</tfoot>
+				</table>
+			</div>
+		</div>
+	{% endfor %}
+	<div class="col-xs-10 col-md-7 col-lg-8">
+		<p>Value: <b class="js-number-format">{{ salarie.value }}</b></p>
+	</div>
+	{% if is_granted('ROLE_ADMIN') %}
+		<div class="col-xs-10 col-md-7 col-lg-8">
+			<a href="{{ path('income_edit', { 'slug': salarie.slug }) }}" class="btn btn-xs btn-primary" role="button"><span class="fa fa-pencil"></span> Edit</a>
+	    </div>
+	{% endif %}
+</section>
+{% endblock %}
+
+{% block javascripts %}
+
+	{{ parent() }}
+
+	<script src="{{ asset('js/jquery.priceformat.min.js') }}"></script>
+
+	<script type="text/template" id="js-inc-template">
+		<tr class="js-input-row">
+			<td colspan="2">
+				<form name="income_input_form" method="post" action="" data-url="/income_input/<%= id %>/edit" class="js-form form-horizontal">
+
+					<div style="display:none">
+						<input type="text" id="income_input_form_worker" name="worker" value="<%= worker %>" class="form-control">
+					</div>
+
+					<input type="text" id="income_input_form_date" name="date" required="required" class="submitreplacement form-control date" value="<%= date %>">
+
+					<input type="text" id="income_input_form_value" name="value" required="required" class="submitreplacement  js-input-log form-control value js-number-format" value="<%= value %>">
+
+				</form>
+			</td>
+			<td class="del-rec">
+				<a href="#" class="js-delete-income" data-url="/income_delete/<%= id %>">
+					<span class="fa fa-trash"></span>
+				</a>
+			</td>
+		</tr>
+	</script>
+
+	<script type="text/template" id="js-inc-new-template">
+		<tr class="js-input-row js-new">
+			<td colspan="2">
+				<form name="income_input_form" method="post" action="" data-url="/income_input/new" class="js-form form-horizontal">
+
+					<div style="display:none">
+						<input type="text" id="income_input_form_worker" name="worker" value="<%= worker %>" class="form-control">
+					</div>
+
+					<input type="text" id="income_input_form_date" name="date" required="required" class="submitreplacement form-control date">
+
+					<input type="text" id="income_input_form_value" name="value" required="required" class="submitreplacement form-control js-number-format value">
+
+				</form>
+			</td>
+			<td class="del-rec"></td>
+
+		</tr>
+	</script>
+
+	<script src="{{ asset('js/income.js') }}"></script>
+
+    <script>
+		jQuery(document).ready(function() {
+			$('b').priceFormat({
+				allowNegative: true,
+				clearPrefix: true,
+				prefix: '',
+				centsLimit: 0,
+				thousandsSeparator: ',',
+				clearOnEmpty: true
+			});
+		});
+	</script>
+
+
+{% endblock %}
+
+
+
+
+
+

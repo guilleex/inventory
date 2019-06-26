@@ -1,0 +1,15 @@
+{% extends 'income/formLayout.html.twig' %}
+
+{% block title %}
+    {{ income.name }}
+{% endblock %}
+
+{% block body %}
+<section class="col-xs-6 col-xs-offset-3 col-sm-6 col-sm-offset-1 col-md-5 col-md-offset-1 col-lg-4 col-lg-offset-2 js-form-wrapper" id="salaries-setings-form">
+            <h3>{{ income.name }}</h3>
+            {{ include('income/_form.html.twig') }}
+            {{ form_start(delete_form) }}
+               <button type="submit" class="btn btn-danger btn-xs del" onclick="return confirm('Are you sure?');">Delete</button>
+            {{ form_end(delete_form) }}
+</section>
+{% endblock %}

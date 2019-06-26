@@ -1,0 +1,72 @@
+body {
+	padding-top: 20px;
+	color: black;
+}
+
+h1 {
+	text-align: center;
+}
+
+table {
+	margin-top: 20px;
+}
+
+.table-bordered {
+	border: 1px solid black;
+}
+
+#main td {
+	border: 1px solid black;
+}
+
+table#statistics {
+	border: none;
+}
+
+#main th,
+#statistics th {
+	width: 15%;
+	font-size: 1.4em;
+	text-align: center;
+	font-weight: normal;
+	border: 1px solid white;
+	border-bottom-color: black;
+}
+
+#statistics th {
+	border: none;
+}
+
+#main th:first-child {
+	width: 23%;
+
+}
+
+#main th:last-child {
+	width: 17%;
+}
+
+#main td,
+#statistics td {
+	vertical-align: middle;
+	font-size: 1.3em;
+	text-align: center;
+}
+
+#main td.machine,
+#main td.jackpot,
+#main td.total,
+#statistics td.machine-type-name {
+	vertical-align: middle;
+	height: 30px;
+	font-size: 1.5em;
+	padding-left: 25px;
+	text-align: left;
+}
+
+.salary {
+	margin-top: 60px;
+	font-size: 1.3em;
+}
+
+

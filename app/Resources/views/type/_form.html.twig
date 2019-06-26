@@ -1,0 +1,15 @@
+{{ form_start(typeForm) }}
+
+        {{ form_errors(typeForm) }}
+
+        {{ form_row(typeForm.name, {
+            'label': 'Type'
+        }) }}
+
+        {{ form_row(typeForm.haveJackpot, {
+            'label': 'Jackpot'
+        }) }}
+
+        <button type="submit" class="btn btn-primary pull-left" formnovalidate>Save</button>
+
+{{ form_end(typeForm) }}

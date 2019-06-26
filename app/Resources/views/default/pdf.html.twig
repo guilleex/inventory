@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" >
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+
+	<title>{{ date }}</title>
+
+	<link rel="stylesheet" href="{{ pathToWeb }}/vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="{{ pathToWeb }}/css/styles-pdf.css">
+
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<h1>{{ date }}</h1>
+			<table class="table table-bordered" id="main">
+				<thead>
+					<tr>
+						<th>Machine</th>
+						<th>New</th>
+						<th>Old</th>
+						<th>Difference</th>
+						<th>Credits</th>
+						<th>Din</th>
+					</tr>
+				</thead>
+				{% for machine in machines %}
+					<tr>
+						<td rowspan="2" class="machine">{{ machine.name }}</td>
+						<td></td>
+						<td class="value js-format">{{ machine.inFindValueOld }}</td>
+						<td></td>
+						<td rowspan="2"></td>
+						<td rowspan="2"></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td class="value js-format">{{ machine.outFindValueOld }}</td>
+						<td></td>
+					</tr>
+				{% endfor %}
+				<tr>
+					<td colspan="5" class="machine">Example Jackpot</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td colspan="5" class="machine">Total</td>
+					<td></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	<script src="{{ pathToWeb }}/vendor/jquery/jquery-2.2.4.min.js"></script>
+	<script src="{{ pathToWeb }}/js/jquery.priceformat.min.js"></script>
+	<script>
+		jQuery(document).ready(function() {
+			$('.js-format').priceFormat({
+				allowNegative: true,
+				clearPrefix: true,
+				prefix: '',
+				centsLimit: 0,
+				thousandsSeparator: ','
+			});
+		});
+	</script>
+</body>
+</html>
+
